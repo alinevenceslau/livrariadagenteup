@@ -18,6 +18,7 @@ A livraria da gente é um site sem fins lucrativos com o objetivo de difundir e 
 * Vue3
 * PHP
 * JavaScript
+* Laravel
 
 ## Desenvolvedores
 
