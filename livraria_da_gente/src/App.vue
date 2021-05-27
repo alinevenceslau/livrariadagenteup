@@ -1,30 +1,17 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="bg-blue-500 p-5 text-white">
+    <h3 class="pl-5 text-2xl font-medium">Livraria da gente</h3>
+    <div class="relative pl-5 text-1xl font-medium">
+    <div class="absolute bottom-px right-0 pr-5">
+      <router-link to="/" class="pr-3">Home</router-link> |
+      <router-link to="/login" class="pr-3 pl-3">Login</router-link> |
+      <router-link to="/" class="pr-3 pl-3">Cadastro</router-link> |
+      <router-link to="/about" class="pl-3">About</router-link>
+    </div>
   </div>
-  <router-view/>
+  </div>
+  <router-view />
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
