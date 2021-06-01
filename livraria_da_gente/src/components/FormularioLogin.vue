@@ -1,12 +1,19 @@
 <template>
-<form>
+  <form>
 
-<label>Nome:</label>
+<!-- <label>Nome:</label>
     <input type="text" class="border border-black" v-model="pessoa.nome">
     <label>Idade:</label>
     <input type="text" class="border border-black" v-model="pessoa.idade">
-<button @click="add" key="add">OK</button>
-</form>
+<button @click="add" key="add">OK</button> -->
+
+
+    <input class="border-none text-black mr-3 focus:outline-none" placeholder="Digite sua Senha" type="text">
+    <input class="border-none text-black mr-3 focus:outline-none" placeholder="Digite seu Nome" type="text">
+    <button class="btn-BordaAzul">OK
+    </button>
+ 
+  </form>
 
 </template>
 
