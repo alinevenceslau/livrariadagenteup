@@ -1,6 +1,7 @@
 <template>
+<div class="justify-align-center">
 <Formulario />
-  
+  </div>
 </template>
 
 <script>
