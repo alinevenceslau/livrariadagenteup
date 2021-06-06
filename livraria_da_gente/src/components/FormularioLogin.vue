@@ -8,11 +8,11 @@
 <button @click="add" key="add">OK</button> -->
 
 
-    <input class="border-none text-black mr-3 focus:outline-none" placeholder="Digite sua Senha" type="text">
-    <input class="border-none text-black mr-3 focus:outline-none" placeholder="Digite seu Nome" type="text">
-    <button class="btn-BordaAzul">OK
+   Nome: <input class="border-none text-black mr-3 focus:outline-none" placeholder="Digite seu Nome" type="text" v-model="pessoa.user"> <br>
+   Senha:  <input class="border-none text-black mr-3 focus:outline-none" placeholder="Digite sua Senha" type="text" v-model="pessoa.pw">
+    <button class="" @click="add" key="add">OK
     </button>
- 
+
   </form>
 
 </template>
@@ -24,19 +24,23 @@ export default {
     return{
       pessoaAtual: [],
       users: [],
-    pessoa: {
-      nome: "",
-      idade: ""
+
+      pessoa: {
+      user: "",
+      pw: ""
     }
     }
   },
   methods: {
     add(){
-      this.pessoaAtual.push(this.pessoa.nome, this.pessoa.idade)
-      this.users.push(this.pessoaAtual);
-      this.pessoaAtual = [],
-      this.pessoa.nome = "";
-      this.pessoa.idade= "";
+      console.log(this.pessoa);
+      //this.pessoaAtual = [this.pessoa.user, this.pessoa.pw];
+      this.$store.commit('addUser', this.pessoa);
+      // this.pessoaAtual.push(this.pessoa.nome, this.pessoa.senha)
+      // this.users.push(this.pessoaAtual);
+      this.pessoa = {};
+      //this.pessoaAtual = [],
+      //this.pessoa.nome = "qualquer coisa";
     }
   },
 }
