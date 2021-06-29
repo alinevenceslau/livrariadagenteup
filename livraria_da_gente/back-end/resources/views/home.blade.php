@@ -30,7 +30,7 @@
                                     </a>
                                 </div>
                                 <div class="col-xs-12 col-sm-6 col-md-3">
-                                    <a href="/verLivros/1" class="text-body">
+                                    <a href="/verLivros" class="text-body">
                                         <div class="card bg-light mb-3">
                                             <div class="card-body">
                                                 <small class="text-secondary">Clique para ver seu acervo</small>

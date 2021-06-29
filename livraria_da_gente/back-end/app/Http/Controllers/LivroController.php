@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\Livro;
 
@@ -27,20 +26,19 @@ class LivroController extends Controller
             'user_id' => auth()->user()->id,
         ]);
 
-        header( "refresh:5;url=/home" );
+        header( "refresh:3;url=/home" );
         return "Livro cadastrado com sucesso!";
     }
 
     public function show()
     {
-        // $livro = Livro::findOrFail($id) | , ['livro' => $livro];
         return view('livros.show');
     }
 
     public function edit($id)
     {
         $livro = Livro::findOrFail($id);
-        return view('livros.show', ['livro' => $livro]);
+        return view('livros.edit', ['livro'=> $livro]);
     }
 
     public function update(Request $request, $id)
@@ -59,7 +57,15 @@ class LivroController extends Controller
             'user_id' => auth()->user()->id,
         ]);
         
-        header( "refresh:5;url=/home" );
+        header( "refresh:3;url=/verLivros" );
         return "Livro atualizado com sucesso!";
+    }
+
+    public function delete($id)
+    {
+        $livro = Livro::find($id);
+        $livro->delete();
+        header( "refresh:3;url=/verLivros" );
+        return "Livro deletado com sucesso!";
     }
 }
