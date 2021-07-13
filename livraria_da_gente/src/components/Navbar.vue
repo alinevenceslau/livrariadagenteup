@@ -7,7 +7,7 @@
                     <!-- Esquerda -->
                     <div class="hidden md:flex items-center space-x-1">
                         <router-link to="/cadastrarLivros" class="py-5 px-3 text-gray-700 hover:text-gray-900">Cadastrar Livros</router-link>
-                        <router-link to="#" class="py-5 px-3 text-gray-700 hover:text-gray-900">Meu acervo</router-link>
+                        <router-link to="/meuAcervo" class="py-5 px-3 text-gray-700 hover:text-gray-900">Meu acervo</router-link>
                     </div>
 
                     <!-- Logo -->

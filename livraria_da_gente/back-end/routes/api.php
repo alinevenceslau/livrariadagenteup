@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+//Crias as rotas do crud, exceto o Create e o Edit
+Route::resource('livro', \App\Http\Controllers\BookController::class)->except([
+    'create','edit'
+]);

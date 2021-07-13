@@ -2,24 +2,24 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    user: "",
-    users: JSON.parse(localStorage.getItem('users')) ?? [],
+    items:[]
   },
   mutations: {
-    // setUsername(state, val) {
-    //   state.user = val
-    // },
-    // setPassword(state, val){
-    //   state.password = val
-    //   localStorage.setItem('users', JSON.stringify(state.users))
-    // },
-    addUser(state, user) {
-         state.users.push(user);
-         console.log(state.users);
-         localStorage.setItem('users', JSON.stringify(state.users));
-    },
+    setLivros(state, items){
+      state.items = items
+    }
   },
   actions: {
+    async fetchData({ commit }) {
+      console.log('fetching data')
+
+      //Armazena os livros vindos da api laravel
+      let response = await fetch('http://localhost:8000/api/livro')
+      console.dir(await response.json)
+      let livros = await response.json
+
+      commit('setLivros', livros)
+    }
   },
   modules: {
   },

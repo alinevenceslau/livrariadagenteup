@@ -29,6 +29,11 @@ const routes = [
     path: '/cadastro',
     name:'Cadastro',
     component: ()=> import('../views/Cadastro.vue')
+  },
+  {
+    path:'/meuAcervo',
+    name:'MeuAcervo',
+    component: ()=> import('../views/MeuAcervo.vue')
   }
 ]
 
