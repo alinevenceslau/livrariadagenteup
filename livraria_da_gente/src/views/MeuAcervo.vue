@@ -1,7 +1,14 @@
 <template>
-    <div><h1>These are your books</h1>
-    {{items}}
-    </div>    
+    <div class="flex items-center justify-center">
+        <div class="grid grid-cols-3 grid-rows-3 gap-2">
+            <div v-for="livro in livros" :key="livro.id">
+                <div class="bg-blue-100 p-3 rounded">
+                    {{livro.titulo}} 
+                </div>
+            </div>      
+        </div>
+    </div>
+        
 </template>
 
 <script>
@@ -15,7 +22,7 @@ export default {
     },
 
     computed:{
-        ...mapState(['items'])
+        ...mapState(['livros'])
     },
 }
 </script>

@@ -2,11 +2,11 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    items:[]
+    livros:[]
   },
   mutations: {
-    setLivros(state, items){
-      state.items = items
+    setLivros(state, livros){
+      state.livros = livros
     }
   },
   actions: {
@@ -15,8 +15,8 @@ export default createStore({
 
       //Armazena os livros vindos da api laravel
       let response = await fetch('http://localhost:8000/api/livro')
-      console.dir(await response.json)
-      let livros = await response.json
+      // console.dir(await response.json())
+      let livros = await response.json()
 
       commit('setLivros', livros)
     }
