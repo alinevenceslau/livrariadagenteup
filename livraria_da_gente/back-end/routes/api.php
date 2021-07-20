@@ -22,3 +22,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('livro', \App\Http\Controllers\BookController::class)->except([
     'create','edit'
 ]);
+
+// Grupo de rotas do JWT
+
+Route::group([
+
+    'middleware' => 'api',
+    'prefix' => 'auth'
+
+], function ($router) {
+
+    Route::post('login', [\App\Http\Controllers\AuthController::class, 'login']);
+    Route::post('logout', [\App\Http\Controllers\AuthController::class, 'logout']);
+    Route::post('refresh', [\App\Http\Controllers\AuthController::class, 'refresh']);
+    Route::post('me',[ \App\Http\Controllers\AuthController::class, 'me']);
+
+});
