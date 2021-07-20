@@ -40,4 +40,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // Função que permite pegar os livros de um determinado usuário, através do relacionamento do ORM
+    public function livros(){
+        return $this->hasMany(Livro::class);
+    }
 }

@@ -12,4 +12,9 @@ class Livro extends Model
     protected $fillable = ['titulo', 'autor', 'genero', 'subtitulo', 'edicao', 'valor', 'isbn', 'estado', 'user_id'];
     protected $hidden = ['user_id', 'updated_at'];
     protected $table = "livro";
+
+    // Função que permite pegar o usuário de um determinado livro, através do relacionamento do ORM
+    public function usuario(){
+        return $this->belongsTo(User::class);
+    }
 }
