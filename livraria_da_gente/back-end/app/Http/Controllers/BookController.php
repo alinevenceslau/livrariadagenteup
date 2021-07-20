@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Livro;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,11 +22,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //Até a autenticação do sistema, o sistema mostrará os livros apenas do usuário com ID 1
-
-        // Pega os livros do usuário 1, e os organiza em ordem crescente de acordo com o titulo
-        $livros = Livro::select()->where('user_id', 1)->orderBy('titulo', 'asc')->get()->toJson();
-        return $livros;
+        // 
+        return Auth::user()->livros()->get()->toJson();
     }
 
     /**
