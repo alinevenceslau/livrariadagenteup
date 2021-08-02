@@ -4,7 +4,26 @@
       <router-link to="/cadastro" class="pr-3 pl-3">Cadastro</router-link> |
       <router-link to="/about" class="pl-3">About</router-link>
   <router-view />
+
 </template>
 
 <style lang="scss">
 </style>
+
+<script>
+import { mapState } from 'vuex'
+
+export default {
+  computed:{
+    ...mapState(['token'])
+  },
+
+  mounted(){
+    const token = localStorage.getItem('token')
+
+    if(token){
+      this.$store.commit('storeToken', token)
+    }
+  }
+}
+</script>
