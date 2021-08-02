@@ -25,6 +25,13 @@ const routes = [
     name:'Login',
     component: ()=> import('../views/Login.vue')
   },
+
+  {
+    path: '/Logout',
+    name: 'Logout',
+    component: ()=> import('../views/Logout.vue')
+  },
+
   {
     path: '/cadastro',
     name:'Cadastro',

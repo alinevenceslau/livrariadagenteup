@@ -34,6 +34,10 @@ export default createStore({
 
       const reponseData = response.data
       commit('storeToken', reponseData.access_token)
+    },
+
+    async logout({ commit }){
+      commit('storeToken', null)
     }
   },
   modules: {
