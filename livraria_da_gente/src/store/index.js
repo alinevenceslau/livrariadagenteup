@@ -27,13 +27,20 @@ export default createStore({
     },
 
     async login({ commit }, data){
-      let response =  await axios.post('http://localhost:8000/api/auth/login' , {
-        email: data[0],
-        password: data[1]
-      })
 
-      const reponseData = response.data
-      commit('storeToken', reponseData.access_token)
+      try {
+        let response =  await axios.post('http://localhost:8000/api/auth/login' , {
+          email: data[0],
+          password: data[1]
+        })
+  
+        const reponseData = response.data
+        commit('storeToken', reponseData.access_token)
+
+        return true
+      } catch (ex) {
+        return false
+      }
     },
 
     async logout({ commit }){

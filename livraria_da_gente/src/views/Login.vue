@@ -47,8 +47,12 @@
         },
 
         methods:{
-            login(){
-                this.$store.dispatch('login', [this.email, this.password])
+            async login(){
+                const logged = await this.$store.dispatch('login', [this.email, this.password])
+                console.log(logged)
+                if(logged){
+                    this.$router.push('/')
+                }
             },
         }
     }
