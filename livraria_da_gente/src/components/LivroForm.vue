@@ -127,14 +127,14 @@ export default {
 
     data(){
         return{
-            titulo: 'Teste',
-            autor: 'Marcelo',
-            genero: 'Ficção',
-            subtitulo: 'Teste testado',
-            edicao: '1',
-            isbn: '1234567890',
-            estado: 'Novo',
-            valor: '50'
+            titulo: '',
+            autor: '',
+            genero: '',
+            subtitulo: '',
+            edicao: '',
+            isbn: '',
+            estado: '',
+            valor: ''
         }
     },
 

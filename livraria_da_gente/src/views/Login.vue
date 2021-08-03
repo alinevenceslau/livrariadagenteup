@@ -41,8 +41,8 @@
 
         data(){
             return {
-                email: 'marcelo@hotmail.com',
-                password: '12345678'
+                email: '',
+                password: ''
             }
         },
 
