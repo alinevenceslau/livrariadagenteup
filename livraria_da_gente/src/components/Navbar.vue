@@ -21,9 +21,13 @@
                     </div>
 
                     <!-- Direita -->
-                    <div class="hidden md:flex items-center space-x-1">
+                    <div class="hidden md:flex items-center space-x-1" v-if="!isLogged">
                         <router-link to="/login" class="py-5 px-3">Entrar</router-link>
                         <router-link to="/cadastro" class="py-2 px-3 bg-blue-900 hover:bg-blue-600 text-white rounded transition duration-300">Cadastrar</router-link>
+                    </div>
+
+                    <div class="hidden md:flex items-center space-x-1"  v-else>
+                        <router-link to="/logout" class="py-5 px-3">Logout</router-link>
                     </div>
                     <router-view/>
                 </div>
@@ -34,7 +38,12 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
-    name: 'Navbar'
+    name: 'Navbar',
+
+    computed:{
+        ...mapGetters(['isLogged'])
+    }
 }
 </script>
