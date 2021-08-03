@@ -11,19 +11,15 @@
 </style>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 
 export default {
   computed:{
-    ...mapState(['token'])
+    ...mapGetters(['isLogged'])
   },
 
   mounted(){
-    const token = localStorage.getItem('token')
-
-    if(token){
-      this.$store.commit('storeToken', token)
-    }
+    this.$store.dispatch('loadToken')
   }
 }
 </script>

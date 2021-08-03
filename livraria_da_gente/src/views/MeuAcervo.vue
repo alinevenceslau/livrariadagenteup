@@ -10,11 +10,10 @@
             </div>      
         </div>
     </div>
-        
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import Navbar from '@/components/Navbar.vue'
 
 
@@ -22,10 +21,14 @@ export default {
     name: 'MeuAcervo',
 
     mounted(){
-        this.$store.dispatch('fetchData')
+        if(this.isLogged){
+            // Para pegar todos os livros do usuário no momento da montagem
+            this.$store.dispatch('fetchData')
+        }
     },
 
     computed:{
+        ...mapGetters(['isLogged']),
         ...mapState(['livros'])
     },
 

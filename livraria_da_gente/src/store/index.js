@@ -6,6 +6,11 @@ export default createStore({
     livros:[],
     token: ''
   },
+  getters:{
+    isLogged: state =>{
+      return state.token !== ''
+    }
+  },
   mutations: {
     setLivros(state, livros){
       state.livros = livros
@@ -16,12 +21,14 @@ export default createStore({
     } 
   },
   actions: {
-    async fetchData({ commit }) {
+    async fetchData({ state, commit }) {
       console.log('fetching data')
 
       //Armazena os livros vindos da api laravel
-      let response = await fetch('http://localhost:8000/api/livro')
-      let livros = await response.json()
+      let response = await axios.get('http://localhost:8000/api/livro', {
+        headers:{ Authorization: `Bearer ${state.token}`}
+      })
+      let livros = await response.data
 
       commit('setLivros', livros)
     },
@@ -44,7 +51,14 @@ export default createStore({
     },
 
     async logout({ commit }){
-      commit('storeToken', null)
+      commit('storeToken', '')
+    },
+
+    async loadToken({ commit }){
+      const token = localStorage.getItem('token')
+      if(token){
+        commit('storeToken', token)
+      }
     }
   },
   modules: {
