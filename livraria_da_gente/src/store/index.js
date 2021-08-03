@@ -18,7 +18,7 @@ export default createStore({
     storeToken(state, token){
       state.token = token
       localStorage.setItem('token', token)
-    } 
+    }
   },
   actions: {
     async fetchData({ state, commit }) {
@@ -52,6 +52,7 @@ export default createStore({
 
     async logout({ commit }){
       commit('storeToken', '')
+      commit('setLivros', [])
     },
 
     async loadToken({ commit }){
@@ -59,6 +60,26 @@ export default createStore({
       if(token){
         commit('storeToken', token)
       }
+    },
+
+    async criarLivro({ state, commit }, livroData){
+      // Envio dos dados para o servidor laravel
+      let response = await axios.post('http://localhost:8000/api/livro',
+        {
+          titulo: livroData.titulo,
+          autor: livroData.autor,
+          genero: livroData.genero,
+          subtitulo: livroData.subtitulo,
+          edicao: livroData.edicao,
+          valor: livroData.valor,
+          isbn: livroData.isbn,
+          estado: livroData.estado,
+        }, 
+        {
+          headers:{ 
+          Authorization: `Bearer ${state.token}`
+        }
+      })
     }
   },
   modules: {

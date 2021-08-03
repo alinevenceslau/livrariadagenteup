@@ -1,5 +1,5 @@
 <template>
-    <form class="justify-items-center w-full max-w-lg mx-auto">
+    <form class="justify-items-center w-full max-w-lg mx-auto" v-on:submit.prevent="criarLivro">
         <div class="flex flex-wrap -mx-3 mb-4">
 
         <!-- Input e label de título -->
@@ -7,7 +7,7 @@
                 <label class="block tracking-wide text-gray-700 text-base font-bold mb-2">
                     Título:
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 rounded text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="ex: Jogos Vorazes" name="titulo" required>
+                <input class="appearance-none block w-full bg-gray-200 rounded text-gray-700 border py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" type="text" placeholder="ex: Jogos Vorazes" name="titulo" required v-model="titulo">
             </div>
 
             <!-- Input e label de subtítulo -->
@@ -15,7 +15,7 @@
                 <label class="block tracking-wide text-gray-700 font-bold mb-2">
                     Subtítulo:
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex: Em chamas" name="subtitulo" required>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex: Em chamas" name="subtitulo" required v-model="subtitulo">
             </div>
         </div>
 
@@ -26,7 +26,7 @@
                 <label class="block tracking-wide text-gray-700 font-bold mb-2">
                     Autor:
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex: Suzanne Collins" name="autor" required>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex: Suzanne Collins" name="autor" required v-model="autor">
             </div>
         </div>
         
@@ -39,7 +39,7 @@
                 </label>
 
                 <div class="relative">
-                    <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required name="genero">
+                    <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required name="genero" v-model="genero">
                         <option value="genero" selected disabled>Escolha uma opção...</option>
 						<option value="Ação">Ação</option>
 						<option value="Ficção">Ficção</option>
@@ -70,7 +70,7 @@
                 </label>
             
                 <div class="relative">
-                    <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required name="estado">
+                    <select class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500" required name="estado" v-model="estado">
                         <option value="estado" disabled selected>Escolha uma opção...</option>
 							<option value="Novo">Novo</option>
 							<option value="Conservado">Usado</option>
@@ -92,7 +92,7 @@
                 <label class="block tracking-wide text-gray-700 font-bold mb-2">
                     ISBN:
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex: Apenas números" name="isbn" required>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex: Apenas números" name="isbn" required v-model="isbn">
             </div>
 
             <!-- Label e input de edição -->
@@ -100,7 +100,7 @@
                 <label class="block tracking-wide text-gray-700 font-bold mb-2">
                     Edição:
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="ex: 1° Edição" required name="edicao">
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="ex: 1° Edição" required name="edicao" v-model="edicao">
             </div>
         </div>
 
@@ -111,7 +111,7 @@
                 <label class="block tracking-wide text-gray-700 font-bold mb-2">
                     Valor:
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex: Valor do livro (apenas números)" required name="valor">
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex: Valor do livro (apenas números)" required name="valor" v-model="valor">
             </div>
             
             <button class="mx-auto bg-blue-900 hover:bg-blue text-white font-base hover:text-white py-2 mb-4 px-16 border border-blue hover:border-transparent rounded">
@@ -123,6 +123,35 @@
 
 <script>
 export default {
-    name: 'LivroForm'
+    name: 'LivroForm',
+
+    data(){
+        return{
+            titulo: 'Teste',
+            autor: 'Marcelo',
+            genero: 'Ficção',
+            subtitulo: 'Teste testado',
+            edicao: '1',
+            isbn: '1234567890',
+            estado: 'Novo',
+            valor: '50'
+        }
+    },
+
+    methods:{
+        criarLivro(){
+            let livroData = {
+                titulo: this.titulo,
+                autor: this.autor,
+                genero: this.genero,
+                subtitulo: this.subtitulo,
+                edicao: this.edicao,
+                isbn: this.isbn,
+                estado: this.estado,
+                valor: this.valor
+            }
+            this.$store.dispatch('criarLivro', livroData)
+        }
+    }
 }
 </script>
