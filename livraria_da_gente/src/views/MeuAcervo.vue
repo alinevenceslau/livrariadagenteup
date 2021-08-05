@@ -23,8 +23,8 @@
 
                     <!-- Botões -->
                     <div class="pb-1">
-                        <button href="#" class="py-2 px-6 float-left border border-blue-900 text-blue-900 rounded hover:bg-blue-900 hover:text-white">Editar livro</button>
-                        <button href="#" class="py-2 px-6 float-right bg-red-500 hover:bg-red-700 text-white rounded">Deletar livro</button>
+                        <button @click.prevent="" class="py-2 px-6 float-left border border-blue-900 text-blue-900 rounded hover:bg-blue-900 hover:text-white">Editar livro</button>
+                        <button @click.prevent="deleteLivro(livro.id)" class="py-2 px-6 float-right bg-red-500 hover:bg-red-700 text-white rounded">Deletar livro</button>
                     </div>
                 </div>
             </div>      
@@ -54,6 +54,12 @@ export default {
 
     components:{
         Navbar
+    },
+    
+    methods:{
+        deleteLivro(id){
+            this.$store.dispatch('deleteLivro', id)
+        }
     }
 }
 </script>

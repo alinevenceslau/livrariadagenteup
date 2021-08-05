@@ -18,6 +18,14 @@ export default createStore({
     storeToken(state, token){
       state.token = token
       localStorage.setItem('token', token)
+    },
+    removeLivro(state, id){
+      for(let contador = 0; contador < state.livros.length; contador++){
+        if(state.livros[contador].id === id){
+          state.livros.splice(contador, 1)
+          break;
+        }
+      }
     }
   },
   actions: {
@@ -80,6 +88,14 @@ export default createStore({
           Authorization: `Bearer ${state.token}`
         }
       })
+    },
+
+    async deleteLivro({ state, commit } , id){
+      // Envio da requisição para a exclusão do livro
+      let response = await axios.delete(`http://localhost:8000/api/livro/${id}`, {
+        headers:{ Authorization: `Bearer ${state.token}`}
+      })
+      commit('removeLivro', id)
     }
   },
   modules: {
