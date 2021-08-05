@@ -150,7 +150,12 @@ export default {
                 estado: this.estado,
                 valor: this.valor
             }
-            this.$store.dispatch('criarLivro', livroData)
+            const isCreated = this.$store.dispatch('criarLivro', livroData)
+            console.log(isCreated)
+            // Verificação usada para evitar a criação de vários livros em sequência
+            if(isCreated){
+                this.$router.push('/meuAcervo')
+            }
         }
     }
 }
