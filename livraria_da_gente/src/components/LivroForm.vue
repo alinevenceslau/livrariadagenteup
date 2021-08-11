@@ -1,5 +1,5 @@
 <template>
-    <form class="justify-items-center w-full max-w-lg mx-auto" v-on:submit.prevent="criarLivro">
+    <form class="justify-items-center w-full max-w-lg mx-auto" v-on:submit.prevent="salvarLivro">
         <div class="flex flex-wrap -mx-3 mb-4">
 
         <!-- Input e label de título -->
@@ -114,9 +114,17 @@
                 <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex: Valor do livro (apenas números)" required name="valor" v-model="valor">
             </div>
             
-            <button class="mx-auto bg-blue-900 hover:bg-blue text-white font-base hover:text-white py-2 mb-4 px-16 border border-blue hover:border-transparent rounded">
-                Criar livro
-            </button>
+            <div v-if="livro == undefined" class="mx-auto">
+                <button class="mx-auto bg-blue-900 hover:bg-blue text-white font-base hover:text-white py-2 mb-4 px-16 border border-blue hover:border-transparent rounded">
+                    Criar livro
+                </button>
+            </div>
+
+            <div v-else class="mx-auto">
+                <button class="mx-auto bg-blue-900 hover:bg-blue text-white font-base hover:text-white py-2 mb-4 px-16 border border-blue hover:border-transparent rounded">
+                    Atualizar
+                </button>
+            </div>
         </div>
     </form>
 </template>
@@ -125,16 +133,18 @@
 export default {
     name: 'LivroForm',
 
+    props:['livro'],
+
     data(){
         return{
-            titulo: '',
-            autor: '',
-            genero: '',
-            subtitulo: '',
-            edicao: '',
-            isbn: '',
-            estado: '',
-            valor: ''
+            titulo: this.livro?.titulo ?? '',
+            autor: this.livro?.autor ?? '',
+            genero: this.livro?.genero ?? '',
+            subtitulo: this.livro?.subtitulo ?? '',
+            edicao: this.livro?.edicao ?? '',
+            isbn: this.livro?.isbn ?? '',
+            estado: this.livro?.estado ?? '',
+            valor: this.livro?.valor ?? ''
         }
     },
 
@@ -151,10 +161,35 @@ export default {
                 valor: this.valor
             }
             const isCreated = this.$store.dispatch('criarLivro', livroData)
-            console.log(isCreated)
             // Verificação usada para evitar a criação de vários livros em sequência
             if(isCreated){
                 this.$router.push('/meuAcervo')
+            }
+        },
+
+        atualizarLivro(){
+            let livroData = {
+                id: this.livro.id,
+                titulo: this.titulo,
+                autor: this.autor,
+                genero: this.genero,
+                subtitulo: this.subtitulo,
+                edicao: this.edicao,
+                valor: this.valor,
+                isbn: this.isbn,
+                estado: this.estado
+            }
+
+            console.log(livroData)
+            
+            this.$store.dispatch('updateLivro', livroData)
+        },
+
+        salvarLivro(){
+            if(this.livro == undefined){
+                this.criarLivro()
+            } else{
+                this.atualizarLivro()
             }
         }
     }

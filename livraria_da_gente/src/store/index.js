@@ -4,7 +4,8 @@ import axios from 'axios'
 export default createStore({
   state: {
     livros:[],
-    token: ''
+    token: '',
+    isEditing: false
   },
   getters:{
     isLogged: state =>{
@@ -26,7 +27,10 @@ export default createStore({
           break;
         }
       }
-    }
+    },
+    changeIsEditing(state){
+      state.isEditing = !state.isEditing
+    },
   },
   actions: {
     async fetchData({ state, commit }) {
@@ -102,6 +106,31 @@ export default createStore({
         headers:{ Authorization: `Bearer ${state.token}`}
       })
       commit('removeLivro', id)
+    },
+
+    async updateLivro({ state, commit } , livroData){
+      // Envio do request para a atualização do livro
+      let response = await axios.put(`http://localhost:8000/api/livro/${livroData.id}`, livroData, {
+        headers:{ Authorization: `Bearer ${state.token}`}
+      })
+
+      // Se a resposta da requisição for OK!(200)
+      if(response.status == 200){
+        for(let counter = 0; counter < state.livros.length; counter++){
+          if(state.livros[counter].id == livroData.id){
+            state.livros[counter] = livroData
+            break;
+          }
+        }
+      }
+
+
+      commit('changeIsEditing')
+      
+    },
+
+    async isEditingUpdate({ commit }){
+      commit('changeIsEditing')
     }
   },
   modules: {
