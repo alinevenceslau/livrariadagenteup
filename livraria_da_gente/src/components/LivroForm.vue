@@ -179,9 +179,6 @@ export default {
                 isbn: this.isbn,
                 estado: this.estado
             }
-
-            console.log(livroData)
-            
             this.$store.dispatch('updateLivro', livroData)
         },
 

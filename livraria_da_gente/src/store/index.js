@@ -34,8 +34,6 @@ export default createStore({
   },
   actions: {
     async fetchData({ state, commit }) {
-      console.log('fetching data')
-
       //Armazena os livros vindos da api laravel
       let response = await axios.get('http://localhost:8000/api/livro', {
         headers:{ Authorization: `Bearer ${state.token}`}
