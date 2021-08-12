@@ -65,6 +65,16 @@ export default createStore({
       commit('setLivros', [])
     },
 
+    async register({ commit }, data){
+
+      try {
+        // Envio dos dados do usuário para a API laravel
+        let response = await axios.post('http://localhost:8000/api/cadastrar', data)
+      } catch (ex) {
+        return false
+      }
+    },
+
     async loadToken({ commit }){
       const token = localStorage.getItem('token')
       if(token){
