@@ -1,5 +1,5 @@
 <template>
-    <form class="justify-items-center w-full max-w-lg mx-auto" v-on:submit.prevent="salvarLivro">
+    <form class="justify-items-center px-80 py-2 mx-auto" v-on:submit.prevent="salvarLivro">
         <div class="flex flex-wrap -mx-3 mb-4">
 
         <!-- Input e label de título -->
@@ -111,7 +111,15 @@
                 <label class="block tracking-wide text-gray-700 font-bold mb-2">
                     Valor:
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="text" placeholder="ex: Valor do livro (apenas números)" required name="valor" v-model="valor">
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" type="number" placeholder="ex: Valor do livro (apenas números)" required name="valor" v-model="valor">
+            </div>
+
+            <!-- Label e input de upload -->
+            <div class="w-full px-3">
+                <label class="block tracking-wide text-gray-700 font-bold mb-2">
+                    Capa:
+                </label>
+                <input class="appearance-none w-2/3 text-gray-700 py-3 px-4 mb-3" type="file" name="image" @change="setImage($event)">
             </div>
             
             <div v-if="livro == undefined" class="mx-auto">
@@ -144,7 +152,8 @@ export default {
             edicao: this.livro?.edicao ?? '',
             isbn: this.livro?.isbn ?? '',
             estado: this.livro?.estado ?? '',
-            valor: this.livro?.valor ?? ''
+            valor: this.livro?.valor ?? '',
+            image: this.livro?.image ?? null
         }
     },
 
@@ -158,7 +167,8 @@ export default {
                 edicao: this.edicao,
                 isbn: this.isbn,
                 estado: this.estado,
-                valor: this.valor
+                valor: this.valor,
+                image: this.image
             }
             const isCreated = this.$store.dispatch('criarLivro', livroData)
             // Verificação usada para evitar a criação de vários livros em sequência
@@ -188,6 +198,11 @@ export default {
             } else{
                 this.atualizarLivro()
             }
+        },
+
+        setImage(e) {
+            this.image = e.target.files[0]
+            console.log(this.image)
         }
     }
 }

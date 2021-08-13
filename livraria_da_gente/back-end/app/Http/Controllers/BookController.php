@@ -33,7 +33,20 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        Livro::create([
+        // Image validation
+
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $imageRequest = $request->image;
+
+            $extension = $imageRequest->extension();
+            // Para evitar de nomes colidirem no banco o nome da imagem é alterado
+            $imageName = md5($imageRequest->getClientOriginalName() . strtotime("now")) . "." . $extension; 
+
+            // Coloca a imagem na pasta capasLivro
+            $imageRequest->move(public_path('img/capasLivro'), $imageName);
+        }
+
+       return Livro::create([
             'titulo'=>$request->titulo,
             'autor'=>$request->autor,
             'genero'=>$request->genero,
@@ -42,7 +55,8 @@ class BookController extends Controller
             'valor'=>$request->valor,
             'isbn'=>$request->isbn,
             'estado'=>$request->estado,
-            'user_id'=> Auth::user()->id
+            'user_id'=> Auth::user()->id,
+            'image' => $imageName
         ]);
     }
 

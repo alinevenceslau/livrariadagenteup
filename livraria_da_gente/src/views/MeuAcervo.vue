@@ -1,6 +1,6 @@
 <template>
     <Navbar/>
-    <div v-if="!this.isEditing">
+    <div v-if="this.isEditing">
         <h1 class="text-center text-2xl mb-5">Meu acervo</h1>
         <div class="flex items-center justify-center min-w-screen px-10">
             <div class="grid grid-cols-4 gap-1">
@@ -9,7 +9,9 @@
                         
                         <!-- Imagem do livro -->
                         <div class="bg-gray-200 h-3/5 flex justify-center items-center">
-                            <span class="text-center font-bold">Imagem do livro aqui</span>
+                            <!-- <span class="text-center font-bold">Imagem do livro aqui</span>
+                             -->
+                            <img :src="image(livro)">
                         </div>
                         
                         <div class="flex-grow">
@@ -77,6 +79,10 @@ export default {
         updateLivro(livro){
             this.$store.dispatch('isEditingUpdate')
             this.livro = livro
+        },
+
+        image(livro){
+            return 'http://localhost:8000/img/capasLivro/' + (livro.image ?? 'default.png')
         }
     }
 }

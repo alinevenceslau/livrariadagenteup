@@ -83,26 +83,35 @@ export default createStore({
     },
 
     async criarLivro({ state, commit }, livroData){
-      // Envio dos dados para o servidor laravel
 
+      var formData = new FormData()
+
+      formData.append("titulo", livroData.titulo)
+      formData.append("autor", livroData.autor)
+      formData.append("genero", livroData.genero)
+      formData.append("subtitulo", livroData.subtitulo)
+      formData.append("edicao", livroData.edicao)
+      formData.append("valor", livroData.valor)
+      formData.append("isbn", livroData.isbn)
+      formData.append("estado", livroData.estado)
+      formData.append("image", livroData.image)
+
+      console.log(formData)
+      
+      // Envio dos dados para o servidor laravel
       try {
         let response = await axios.post('http://localhost:8000/api/livro',
-          {
-            titulo: livroData.titulo,
-            autor: livroData.autor,
-            genero: livroData.genero,
-            subtitulo: livroData.subtitulo,
-            edicao: livroData.edicao,
-            valor: livroData.valor,
-            isbn: livroData.isbn,
-            estado: livroData.estado,
-          }, 
+           formData,
           {
             headers:{ 
-            Authorization: `Bearer ${state.token}`
+            Authorization: `Bearer ${state.token}`,
+            'Content-Type': 'multipart/form-data'
           }
         })
-        return true
+
+        console.log(response)
+
+        // return true
       } catch (ex) {
         return false
       }
