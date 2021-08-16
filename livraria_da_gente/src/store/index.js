@@ -95,8 +95,6 @@ export default createStore({
       formData.append("isbn", livroData.isbn)
       formData.append("estado", livroData.estado)
       formData.append("image", livroData.image)
-
-      console.log(formData)
       
       // Envio dos dados para o servidor laravel
       try {
@@ -111,7 +109,7 @@ export default createStore({
 
         console.log(response)
 
-        // return true
+        return true
       } catch (ex) {
         return false
       }
@@ -126,10 +124,29 @@ export default createStore({
     },
 
     async updateLivro({ state, commit } , livroData){
+
+      // Criação FormData
+      var formData = new FormData()
+
+      formData.append("titulo", livroData.titulo)
+      formData.append("autor", livroData.autor)
+      formData.append("genero", livroData.genero)
+      formData.append("subtitulo", livroData.subtitulo)
+      formData.append("edicao", livroData.edicao)
+      formData.append("valor", livroData.valor)
+      formData.append("isbn", livroData.isbn)
+      formData.append("estado", livroData.estado)
+      formData.append("image", livroData.image)
+
       // Envio do request para a atualização do livro
-      let response = await axios.put(`http://localhost:8000/api/livro/${livroData.id}`, livroData, {
-        headers:{ Authorization: `Bearer ${state.token}`}
+      let response = await axios.post(`http://localhost:8000/api/livro/${livroData.id}`, formData, {
+        headers:{ 
+          Authorization: `Bearer ${state.token}`,
+          'Content-Type': 'multipart/form-data'
+        }
       })
+
+      console.log(response)
 
       // Se a resposta da requisição for OK!(200)
       if(response.status == 200){

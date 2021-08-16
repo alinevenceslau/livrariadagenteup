@@ -1,5 +1,5 @@
 <template>
-    <form class="justify-items-center px-80 py-2 mx-auto" v-on:submit.prevent="salvarLivro">
+    <form method="POST" class="justify-items-center px-80 py-2 mx-auto" v-on:submit.prevent="salvarLivro">
         <div class="flex flex-wrap -mx-3 mb-4">
 
         <!-- Input e label de título -->
@@ -115,11 +115,24 @@
             </div>
 
             <!-- Label e input de upload -->
-            <div class="w-full px-3">
-                <label class="block tracking-wide text-gray-700 font-bold mb-2">
-                    Capa:
-                </label>
-                <input class="appearance-none w-2/3 text-gray-700 py-3 px-4 mb-3" type="file" name="image" @change="setImage($event)">
+
+            <div v-if="this.hasImage == ''">
+                <div class="w-full px-3">
+                    <label class="block tracking-wide text-gray-700 font-bold mb-2">
+                        Capa:
+                    </label>
+                    <input class="appearance-none w-2/3 text-gray-700 py-3 px-4 mb-3" type="file" name="image" @change="setImage($event)">
+                </div>
+            </div>
+
+            <div v-else>
+                <img :src="showImage(this.livro)" alt="Capa do livro">
+                <div class="w-full px-3">
+                    <label class="block tracking-wide text-gray-700 font-bold mb-2">
+                        Atualizar:
+                    </label>
+                    <input class="appearance-none w-2/3 text-gray-700 py-3 px-4 mb-3" type="file" name="image" @change="setImage($event)">
+                </div>
             </div>
             
             <div v-if="livro == undefined" class="mx-auto">
@@ -128,9 +141,14 @@
                 </button>
             </div>
 
-            <div v-else class="mx-auto">
-                <button class="mx-auto bg-blue-900 hover:bg-blue text-white font-base hover:text-white py-2 mb-4 px-16 border border-blue hover:border-transparent rounded">
+            <div v-else class="flex mx-auto gap-5">
+                
+                <button class="bg-blue-900 hover:bg-blue text-white font-base hover:text-white py-2 mb-4 px-16 border border-blue hover:border-transparent rounded">
                     Atualizar
+                </button>
+
+                <button class="bg-red-600 text-white font-base py-2 mb-4 px-16 border border-blue rounded" @click.prevent="cancelChanges()">
+                    Cancelar
                 </button>
             </div>
         </div>
@@ -153,7 +171,8 @@ export default {
             isbn: this.livro?.isbn ?? '',
             estado: this.livro?.estado ?? '',
             valor: this.livro?.valor ?? '',
-            image: this.livro?.image ?? null
+            image: this.livro?.image ?? '',
+            hasImage:this.livro?.image ?? ''
         }
     },
 
@@ -187,7 +206,8 @@ export default {
                 edicao: this.edicao,
                 valor: this.valor,
                 isbn: this.isbn,
-                estado: this.estado
+                estado: this.estado,
+                image: this.image
             }
             this.$store.dispatch('updateLivro', livroData)
         },
@@ -202,7 +222,15 @@ export default {
 
         setImage(e) {
             this.image = e.target.files[0]
-            console.log(this.image)
+        },
+
+        showImage(livro){
+            return 'http://localhost:8000/img/capasLivro/' + livro.image
+        },
+
+        cancelChanges(){
+            console.log(this.livro)
+            this.$store.dispatch('isEditingUpdate')
         }
     }
 }

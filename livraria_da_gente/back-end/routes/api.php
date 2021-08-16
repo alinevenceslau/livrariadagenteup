@@ -20,8 +20,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //Crias as rotas do crud, exceto o Create e o Edit
 Route::resource('livro', \App\Http\Controllers\BookController::class)->except([
-    'create','edit'
+    'create','edit', 'update'
 ]);
+
+Route::post('livro/{livro}', [\App\Http\Controllers\BookController::class, 'update']);
 
 // Grupo de rotas do JWT
 Route::post('me',[ \App\Http\Controllers\AuthController::class, 'me']);

@@ -34,13 +34,14 @@ class BookController extends Controller
     public function store(Request $request)
     {
         // Image validation
-
+        $image = '';
         if($request->hasFile('image') && $request->file('image')->isValid()){
             $imageRequest = $request->image;
 
             $extension = $imageRequest->extension();
             // Para evitar de nomes colidirem no banco o nome da imagem é alterado
             $imageName = md5($imageRequest->getClientOriginalName() . strtotime("now")) . "." . $extension; 
+            $image = $imageName;
 
             // Coloca a imagem na pasta capasLivro
             $imageRequest->move(public_path('img/capasLivro'), $imageName);
@@ -56,7 +57,7 @@ class BookController extends Controller
             'isbn'=>$request->isbn,
             'estado'=>$request->estado,
             'user_id'=> Auth::user()->id,
-            'image' => $imageName
+            'image' => $image
         ]);
     }
 
@@ -89,6 +90,20 @@ class BookController extends Controller
             return response('', 403);
         }
 
+        // Image validation
+        $image = '';
+        if($request->hasFile('image') && $request->file('image')->isValid()){
+            $imageRequest = $request->image;
+
+            $extension = $imageRequest->extension();
+            // Para evitar de nomes colidirem no banco o nome da imagem é alterado
+            $imageName = md5($imageRequest->getClientOriginalName() . strtotime("now")) . "." . $extension; 
+            $image = $imageName;
+
+            // Coloca a imagem na pasta capasLivro
+            $imageRequest->move(public_path('img/capasLivro'), $imageName);
+        }
+
         $livro->titulo = $request->titulo;
         $livro->autor = $request->autor;
         $livro->genero = $request->genero;
@@ -97,7 +112,7 @@ class BookController extends Controller
         $livro->valor = $request->valor;
         $livro->isbn = $request->isbn;
         $livro->estado = $request->estado;
-        // $livro->user_id = $request->Auth::user()->id;
+        $livro->image = $image;
         $livro->save();
     }
 
