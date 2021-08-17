@@ -41,6 +41,11 @@ const routes = [
     path:'/meuAcervo',
     name:'MeuAcervo',
     component: ()=> import('../views/MeuAcervo.vue')
+  },
+  {
+    path:'/landingPage',
+    name:'LandingPage',
+    component: ()=> import('../views/LandingPage.vue')
   }
 ]
 

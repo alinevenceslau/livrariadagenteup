@@ -1,9 +1,11 @@
 <template>
-      <router-link to="/" class="pr-3">Home</router-link> |
-      <router-link to="/login" class="pr-3 pl-3">Login</router-link> |
-      <router-link to="/cadastro" class="pr-3 pl-3">Cadastro</router-link> |
-      <router-link to="/about" class="pl-3">About</router-link>
-  <router-view />
+	<div id="app">
+		<div class="routing" v-if="!isShown()">
+			<router-link to="/">Login /</router-link>
+			<router-link to="/home">Home</router-link>
+		</div>
+		<router-view></router-view>
+	</div>
 
 </template>
 
@@ -11,12 +13,19 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  computed:{
-    ...mapGetters(['isLogged'])
-  },
+	computed:{
+		...mapGetters(['isLogged'])
+	},
+	
+	mounted(){
+		this.$store.dispatch('loadToken')
+	},
 
-  mounted(){
-    this.$store.dispatch('loadToken')
-  }
+	methods:{
+		isShown(){
+			return this.$route.path === "/landingPage" || this.$route.path === "/login"
+		}
+	}
+
 }
 </script>

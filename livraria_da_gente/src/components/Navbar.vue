@@ -23,7 +23,7 @@
                     <!-- Direita -->
                     <div class="hidden md:flex items-center space-x-1" v-if="!isLogged">
                         <router-link to="/login" class="py-5 px-3">Entrar</router-link>
-                        <router-link to="/cadastro" class="py-2 px-3 bg-blue-900 hover:bg-blue-600 text-white rounded transition duration-300">Cadastrar</router-link>
+                        <router-link to="/cadastro" class="py-2 px-3 bg-blue-900 text-white hover:bg-blue-700 rounded transition duration-300">Cadastrar</router-link>
                     </div>
 
                     <div class="hidden md:flex items-center space-x-1"  v-else>
