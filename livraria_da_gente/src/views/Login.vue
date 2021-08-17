@@ -56,7 +56,7 @@
                 const logged = await this.$store.dispatch('login', [this.email, this.password])
                 console.log(logged)
                 if(logged){
-                    this.$router.push('/')
+                    this.$router.push('/home')
                 }
             },
 

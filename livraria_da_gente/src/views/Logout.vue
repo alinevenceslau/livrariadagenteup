@@ -6,7 +6,7 @@
 export default {
     mounted(){
         this.$store.dispatch('logout')
-        this.$router.push('/')
+        this.$router.push('/landingPage')
     }
 }
 </script>

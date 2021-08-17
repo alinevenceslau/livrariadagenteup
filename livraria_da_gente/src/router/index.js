@@ -3,6 +3,11 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
+    name: 'LandingPage',
+    component: ()=> import('../views/LandingPage.vue')
+  },
+  {
+    path: '/home',
     name: 'Home',
     component: ()=> import('../views/Home.vue')
   },
@@ -42,11 +47,6 @@ const routes = [
     name:'MeuAcervo',
     component: ()=> import('../views/MeuAcervo.vue')
   },
-  {
-    path:'/landingPage',
-    name:'LandingPage',
-    component: ()=> import('../views/LandingPage.vue')
-  }
 ]
 
 const router = createRouter({

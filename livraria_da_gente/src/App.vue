@@ -1,7 +1,6 @@
 <template>
 	<div id="app">
 		<div class="routing" v-if="!isShown()">
-			<router-link to="/">Login /</router-link>
 			<router-link to="/home">Home</router-link>
 		</div>
 		<router-view></router-view>
@@ -23,7 +22,7 @@ export default {
 
 	methods:{
 		isShown(){
-			return this.$route.path === "/landingPage" || this.$route.path === "/login"
+			return this.$route.path === "/landingPage" || this.$route.path === "/login" || this.$route.path === "/cadastro"
 		}
 	}
 
