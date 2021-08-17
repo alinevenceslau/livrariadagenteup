@@ -28,7 +28,6 @@
                 </div>
             </form>
             <p>Não possui uma conta? Clique aqui para se <a class="font-bold cursor-pointer" @click.prevent="redirectToSignUp">Cadastrar</a></p>
-            <router-view/>
         </div>
     </div>
     

@@ -1,15 +1,14 @@
 <template>
-    <FormHeader/>
-    <div class="object-center w-full max-w-xs mx-auto">
-        <form class="shadow-xl p-8" @submit.prevent="cadastrar">
-
+    <div class="flex justify-center items-center flex-col py-4">
+        <FormHeader/>
+        <form class="" @submit.prevent="cadastrar">
             <div class="flex flex-wrap -mx-3 mb-4">
                 <!-- Input e label de senha -->
                 <div class="w-full px-3">
                     <label class="block tracking-wide text-gray-700 font-bold mb-2">
                         Nome:
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200     rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="text" placeholder="Digite o seu nome" name="nome" required v-model="name">
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="text" placeholder="Digite o seu nome" name="nome" required v-model="name">
                 </div>
             </div>
 
@@ -30,7 +29,7 @@
                     <label class="block tracking-wide text-gray-700 font-bold mb-2">
                         Senha:
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200     rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="password" placeholder="********" name="senha" required v-model="password">
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="password" placeholder="********" name="senha" required v-model="password">
                 </div>
             </div>
 
@@ -40,14 +39,15 @@
                     <label class="block tracking-wide text-gray-700 font-bold mb-2">
                         Confirme sua Senha:
                     </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200     rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="password" placeholder="********" name="confirma" required v-model="password_confirmation">
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"   type="password" placeholder="********" name="confirma" required v-model="password_confirmation">
                 </div>
                 
-                <button class="mx-auto bg-blue-900 hover:bg-blue text-white font-base hover:text-white py-2 mt-6 px-16 border border-blue hover:border-transparent rounded">
+                <button class="mx-auto bg-blue-900 hover:bg-blue text-white font-base hover:text-white py-2 mt-2 px-16 border border-blue hover:border-transparent rounded">
                     Cadastrar
                 </button>
             </div>
         </form>
+        <p>Já possui uma conta? Clique aqui para se <a class="font-bold cursor-pointer" @click.prevent="redirectToSignIn">fazer login</a></p>
     </div>
     
 </template>
@@ -88,6 +88,10 @@
                 if(isCreated){
                     this.$router.push('/login')
                 } 
+            },
+
+            redirectToSignIn(){
+                this.$router.push('/login')
             }
         }
     }
