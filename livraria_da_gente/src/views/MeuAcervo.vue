@@ -15,7 +15,7 @@
                         <div class="flex-grow">
                             <!-- Título -->
                             <div class="pt-3 flex flex-col">
-                                <span class="text-lg font-medium">{{livro.titulo}} - {{livro.subtitulo}}</span>
+                                <span @click.prevent="showBook(livro)" class="text-lg font-medium cursor-pointer">{{livro.titulo}} - {{livro.subtitulo}}</span>
                                 <span class="py-2">{{livro.autor}}</span>
                             </div>
                         </div>
@@ -80,8 +80,11 @@ export default {
         },
 
         image(livro){
-            console.log(livro)
             return 'http://localhost:8000/img/capasLivro/' + (livro.image || 'default.jpg')
+        },
+
+        showBook(livro){
+            this.$router.push({name: 'Livro', params:livro})
         }
     }
 }

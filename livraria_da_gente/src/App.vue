@@ -22,7 +22,7 @@ export default {
 
 	methods:{
 		isShown(){
-			return this.$route.path === "/landingPage" || this.$route.path === "/login" || this.$route.path === "/cadastro"
+			return this.$route.path === "/landingPage" || this.$route.path === "/login" || this.$route.path === "/cadastro" || this.$route.path === "/livro"
 		}
 	}
 

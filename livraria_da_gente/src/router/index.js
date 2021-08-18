@@ -47,6 +47,11 @@ const routes = [
     name:'MeuAcervo',
     component: ()=> import('../views/MeuAcervo.vue')
   },
+  {
+    path: '/livro',
+    name: 'Livro',
+    component: ()=> import('../views/Livro.vue')
+  }
 ]
 
 const router = createRouter({
