@@ -106,9 +106,6 @@ export default createStore({
             'Content-Type': 'multipart/form-data'
           }
         })
-
-        console.log(response)
-
         return true
       } catch (ex) {
         return false
@@ -145,9 +142,6 @@ export default createStore({
           'Content-Type': 'multipart/form-data'
         }
       })
-
-      console.log(response)
-
       // Se a resposta da requisição for OK!(200)
       if(response.status == 200){
         for(let counter = 0; counter < state.livros.length; counter++){
@@ -157,10 +151,7 @@ export default createStore({
           }
         }
       }
-
-
-      commit('changeIsEditing')
-      
+      commit('changeIsEditing')   
     },
 
     async isEditingUpdate({ commit }){

@@ -21,8 +21,13 @@ class BookController extends Controller
      */
     public function index()
     {
-        // 
-        return Auth::user()->livros()->get()->toJson();
+        $livros = Auth::user()->livros()->get();
+
+        if(sizeof($livros) == 0){
+            return response('Você ainda não possui livros!', 204);
+        } else {
+            return Auth::user()->livros()->get()->toJson();
+        }
     }
 
     /**
