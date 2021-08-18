@@ -60,6 +60,10 @@ export default {
         }
     },
 
+    created(){
+		document.title="Meu Acervo"	
+	},
+
     computed:{
         ...mapGetters(['isLogged']),
         ...mapState(['livros', 'isEditing']),

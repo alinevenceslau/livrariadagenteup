@@ -50,6 +50,10 @@
             }
         },
 
+        created(){
+			document.title="Login"	
+		},
+
         methods:{
             async login(){
                 const logged = await this.$store.dispatch('login', [this.email, this.password])

@@ -22,6 +22,10 @@
             Navbar
         },
 
+        created(){
+			document.title="Livraria da Gente"	
+		},
+
         methods:{
             goToMeuAcervo(){
                 this.$router.push('/meuAcervo')

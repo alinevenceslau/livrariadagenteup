@@ -70,6 +70,10 @@
             }
         },
 
+        created(){
+			document.title="Cadastro"	
+		},
+
         methods:{
             cadastrar(){
                 if(this.password != this.password_confirmation){

@@ -11,6 +11,10 @@
         name: 'CadastrarLivros',
         components:{
             Navbar, LivroForm
-        }
+        },
+
+        created(){
+			document.title="Cadastrar Livro"	
+		}
     }
 </script>

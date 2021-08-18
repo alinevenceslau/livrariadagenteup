@@ -24,6 +24,10 @@
 			Navbar
 		},
 
+		created(){
+			document.title="Bem vindo!"	
+		},
+
 		methods:{
 			sendToLogin(){
 				this.$router.push('/login')
