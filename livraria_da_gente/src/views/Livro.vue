@@ -45,6 +45,10 @@
             }
         },
 
+        created(){
+			document.title= this.livro.titulo + " - " + this.livro.subtitulo	
+		},
+
         methods:{
             image(livro){
                 console.log(livro)
