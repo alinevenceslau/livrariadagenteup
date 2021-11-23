@@ -5,11 +5,8 @@ A livraria da gente é um site sem fins lucrativos com o objetivo de difundir e 
 ## Funcionalidades
 
 * Cadastro de Usuário
-* Comprar Livros (usando PageCoins);
 * Doar Livros;
-* Fazer quests (tarefas/missões) semanais, que recompensam o usuário com PageCoins;
-* Fazer Resenhas de livros lidos pelos usuários; 
-* Cadastrar livros lidos em uma espécie de "estante virtual".
+* ter um acervo de livros em uma espécie de "estante virtual".
 
 ## Tecnologias 
 
